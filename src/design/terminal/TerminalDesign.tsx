@@ -21,7 +21,7 @@ import {
   ArrowDownIcon,
   ArrowRightIcon,
   ContactIcon,
-  DownloadIcon,
+  ExternalIcon,
   GitHubIcon,
 } from '../../components/icons';
 
@@ -83,7 +83,7 @@ function Nav() {
           rel="noopener noreferrer"
           className="hidden items-center gap-1.5 rounded-md border border-brand-cyan/30 px-3.5 py-1.5 font-mono text-[12px] text-brand-cyan transition-colors hover:bg-brand-cyan/10 md:inline-flex"
         >
-          <DownloadIcon width={13} height={13} /> CV
+          CV <ExternalIcon width={13} height={13} />
         </a>
 
         <button className="text-slate-text md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -166,7 +166,7 @@ function Hero() {
                 View Atlas case study <ArrowRightIcon width={14} height={14} />
               </button>
               <a href={PROFILE.cv} target="_blank" rel="noopener noreferrer" className={`${btn} border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan/5`}>
-                <DownloadIcon width={14} height={14} /> Download CV
+                View CV <ExternalIcon width={14} height={14} />
               </a>
               <button onClick={() => scrollTo('#contact')} className={`${btn} cursor-pointer border-slate-subtle/40 text-slate-text hover:border-brand-cyan/40 hover:text-brand-cyan`}>
                 Get in touch
@@ -181,6 +181,10 @@ function Hero() {
               <img
                 src={PROFILE.photo}
                 alt={PROFILE.name}
+                width={1024}
+                height={1024}
+                loading="eager"
+                fetchPriority="high"
                 className="h-56 w-56 rounded-full border-2 border-brand-cyan/30 object-cover md:h-72 md:w-72"
                 style={{ filter: 'contrast(1.02) brightness(0.98)' }}
               />
@@ -259,7 +263,7 @@ function AtlasCase() {
           barClassName="border-b border-brand-cyan/10 bg-navy text-slate-subtle"
           urlClassName="bg-navy/60 text-slate-muted"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
         </BrowserFrame>
       </motion.div>
 

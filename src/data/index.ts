@@ -17,11 +17,11 @@ export const PROFILE = {
   name: 'Mahmoud Kharouf',
   firstName: 'Mahmoud',
   lastName: 'Kharouf',
-  role: 'Full-Stack Developer',
-  roleLong: 'Full-Stack Developer · Django + React',
+  role: 'Backend Developer',
+  roleLong: 'Backend Developer · Python + Django',
   location: 'Tulkarm, Palestine',
   availability: 'Available for opportunities',
-  photo: '/profile.png',
+  photo: '/Mahmoud.webp',
   cv: '/Mahmoud%20Kharouf.pdf',
   email: 'KharoufMahmoud@gmail.com',
   /** Short, punchy line for heroes. */
@@ -46,7 +46,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const METRICS: Metric[] = [
   { id: 'modules', value: '10+', label: 'Integrated ERP modules shipped' },
   { id: 'tenant', value: 'Multi-tenant', label: 'Isolated DB schema per company' },
-  { id: 'stack', value: 'Django + React', label: 'End-to-end ownership, API to UI' },
+  { id: 'stack', value: 'Django + DRF', label: 'REST APIs, data & multi-tenant systems' },
   { id: 'field', value: '3 yrs', label: 'Field surveying — precision & rigor' },
 ];
 
@@ -61,7 +61,7 @@ export const ATLAS = {
     "Atlas is a complete Enterprise Resource Planning system I architected and built end-to-end as my CS graduation project. Each company's data is isolated per tenant behind a secure REST API, with role-based access control, a full Arabic (RTL) interface, and dark mode. It unifies finance, accounting, HR, inventory, and point-of-sale into one platform. Built on SQLite, with a planned migration to PostgreSQL for production scale.",
   githubUrl: 'https://github.com/osaid-B/Main-Application',
   liveUrl: '#',
-  cover: '/projects/atlas/dashboard.png',
+  cover: '/projects/atlas/dashboard.webp',
   stack: [
     'Django',
     'Django REST Framework',
@@ -109,7 +109,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'لوحة التحكم',
     description:
       'Company-wide KPIs at a glance — revenue, expenses, headcount, and customers — with cash-flow and departmental revenue breakdowns.',
-    image: '/projects/atlas/dashboard.png',
+    image: '/projects/atlas/dashboard.webp',
     tags: ['KPIs', 'Cash flow', 'Charts'],
   },
   {
@@ -118,7 +118,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'التحليلات المالية',
     description:
       'Trend analysis across revenue and cash flow over time, with month-over-month comparisons to spot momentum early.',
-    image: '/projects/atlas/analytics.png',
+    image: '/projects/atlas/analytics.webp',
     tags: ['Trends', 'Reporting', 'Insights'],
   },
   {
@@ -127,7 +127,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'الخزينة',
     description:
       'Manage bank accounts, checks, and transfers with running balances and a full ledger of every financial instrument.',
-    image: '/projects/atlas/treasury.png',
+    image: '/projects/atlas/treasury.webp',
     tags: ['Bank accounts', 'Checks', 'Transfers'],
   },
   {
@@ -136,7 +136,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'الفواتير',
     description:
       'Customer, supplier, and internal invoices with paid / unpaid / overdue tracking and automatic due-date alerts.',
-    image: '/projects/atlas/invoices.png',
+    image: '/projects/atlas/invoices.webp',
     tags: ['AR / AP', 'Due tracking', 'Statuses'],
   },
   {
@@ -145,7 +145,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'سجل الديون',
     description:
       'Track money owed and owing per counterparty, with payment progress bars and settlement status across the business.',
-    image: '/projects/atlas/debts.png',
+    image: '/projects/atlas/debts.webp',
     tags: ['Receivables', 'Payables', 'Settlement'],
   },
   {
@@ -154,7 +154,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'الموظفون',
     description:
       'Employee records organized by department with salaries, working hours, contact details, and attendance.',
-    image: '/projects/atlas/employees.png',
+    image: '/projects/atlas/employees.webp',
     tags: ['Records', 'Salaries', 'Attendance'],
   },
   {
@@ -163,7 +163,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'الإجازات',
     description:
       'A leave-request workflow with approvals and balances, modeled on Palestinian labor law and policy rules.',
-    image: '/projects/atlas/leaves.png',
+    image: '/projects/atlas/leaves.webp',
     tags: ['Approvals', 'Balances', 'Labor law'],
   },
   {
@@ -172,7 +172,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'نقطة البيع',
     description:
       'A fast cashier interface with barcode scanning, live cart, category filters, and multi-branch register support.',
-    image: '/projects/atlas/pos.png',
+    image: '/projects/atlas/pos.webp',
     tags: ['Barcode', 'Cart', 'Multi-branch'],
   },
   {
@@ -181,7 +181,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'سجل المبيعات',
     description:
       'Every transaction logged per cashier, with payment-method analytics and revenue attribution across the team.',
-    image: '/projects/atlas/sales.png',
+    image: '/projects/atlas/sales.webp',
     tags: ['Transactions', 'Payment mix', 'Export'],
   },
   {
@@ -190,7 +190,7 @@ export const ATLAS_MODULES: AtlasModule[] = [
     titleAr: 'المسترجعات',
     description:
       'A refund workflow with approvals plus analytics on return reasons to surface quality and process issues.',
-    image: '/projects/atlas/returns.png',
+    image: '/projects/atlas/returns.webp',
     tags: ['Refund flow', 'Reason analytics', 'Approvals'],
   },
 ];
@@ -199,10 +199,10 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     id: 'atlas-erp',
     period: '2022 – 2026',
-    role: 'Full-Stack Developer — Lead',
+    role: 'Backend Developer — Lead',
     org: 'Atlas ERP · Graduation Project',
     description:
-      'Architected and built a full-stack, multi-tenant ERP from design to deployment. Owned the backend API and database schemas, drove frontend development, and coordinated a distributed team using agile practices to ship 10+ integrated business modules.',
+      'Architected and built a complete, multi-tenant ERP from design to deployment. Owned the backend API and database schemas, drove frontend development, and coordinated a distributed team using agile practices to ship 10+ integrated business modules.',
     tags: ['Django REST', 'SQLite', 'React', 'Multi-Tenant', 'Team Lead'],
   },
   {
@@ -272,7 +272,7 @@ export const PROJECTS: Project[] = [
     description:
       'A production-ready, multi-tenant ERP with isolated tenant schemas, granular RBAC, a secure REST API, and 10+ integrated business modules.',
     stack: ['Django', 'Django REST', 'SQLite', 'React', 'RBAC', 'Multi-Tenant'],
-    image: '/projects/atlas/dashboard.png',
+    image: '/projects/atlas/dashboard.webp',
     githubUrl: 'https://github.com/osaid-B/Main-Application',
     liveUrl: '#',
     status: 'live',

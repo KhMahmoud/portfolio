@@ -3,3 +3,6 @@ node_modules/
 dist/
 build/
 .DS_Store
+
+# Source/scratch assets — not served, kept out of the deployed repo
+private/

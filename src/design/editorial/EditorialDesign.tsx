@@ -137,7 +137,7 @@ function Hero() {
 
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="relative order-1 mx-auto w-full max-w-[220px] md:order-2 md:max-w-none">
           <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-blue-700/30" />
-          <img src={PROFILE.photo} alt={PROFILE.name} className="relative aspect-[4/5] w-full rounded-2xl border border-stone-200 object-cover shadow-sm md:aspect-auto md:h-80 md:w-72" />
+          <img src={PROFILE.photo} alt={PROFILE.name} width={1024} height={1024} loading="eager" fetchPriority="high" className="relative aspect-[4/5] w-full rounded-2xl border border-stone-200 object-cover shadow-sm md:aspect-auto md:h-80 md:w-72" />
         </motion.div>
       </div>
     </section>
@@ -184,7 +184,7 @@ function AtlasCase() {
           barClassName="border-b border-stone-200 bg-stone-100 text-stone-400"
           urlClassName="bg-white text-stone-400"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
         </BrowserFrame>
         <figcaption className="mt-3 text-center font-mono text-[11px] tracking-wide text-stone-400">
           Fig. 1 — Executive dashboard · real-time KPIs, cash flow & departmental analytics

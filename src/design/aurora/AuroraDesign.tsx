@@ -20,7 +20,7 @@ import { BrowserFrame } from '../../components/BrowserFrame';
 import {
   ArrowRightIcon,
   ContactIcon,
-  DownloadIcon,
+  ExternalIcon,
   GitHubIcon,
 } from '../../components/icons';
 
@@ -34,7 +34,7 @@ const fadeUp = {
 
 const GRAD = 'bg-gradient-to-r from-fuchsia-400 via-violet-400 to-cyan-300';
 const GLASS =
-  'rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl';
+  'rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-md';
 
 function scrollTo(href: string) {
   document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
@@ -52,9 +52,9 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function Aurora() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#06060f]">
-      <div className="aurora-blob absolute -left-40 -top-40 h-[42rem] w-[42rem] rounded-full bg-fuchsia-600/25 blur-[120px]" />
-      <div className="aurora-blob-2 absolute -right-40 top-20 h-[40rem] w-[40rem] rounded-full bg-violet-600/25 blur-[120px]" />
-      <div className="aurora-blob-3 absolute bottom-0 left-1/3 h-[38rem] w-[38rem] rounded-full bg-cyan-500/20 blur-[120px]" />
+      <div className="aurora-blob absolute -left-40 -top-40 h-[42rem] w-[42rem] rounded-full bg-fuchsia-600/25 blur-[64px]" />
+      <div className="aurora-blob-2 absolute -right-40 top-20 h-[40rem] w-[40rem] rounded-full bg-violet-600/25 blur-[64px]" />
+      <div className="aurora-blob-3 absolute bottom-0 left-1/3 h-[38rem] w-[38rem] rounded-full bg-cyan-500/20 blur-[64px]" />
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -74,7 +74,7 @@ function Nav() {
 
   return (
     <nav className="fixed inset-x-0 top-4 z-50 px-4">
-      <div className={`mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 pl-5 backdrop-blur-xl`}>
+      <div className={`mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 pl-5 backdrop-blur-md`}>
         <button onClick={() => scrollTo('#hero')} className={`bg-clip-text font-display text-sm font-bold text-transparent ${GRAD}`}>
           Mahmoud Kharouf
         </button>
@@ -93,7 +93,7 @@ function Nav() {
           rel="noopener noreferrer"
           className="hidden items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[12px] font-semibold text-[#06060f] transition-transform hover:-translate-y-0.5 md:inline-flex"
         >
-          <DownloadIcon width={13} height={13} /> CV
+          CV <ExternalIcon width={13} height={13} />
         </a>
         <button className="text-white/70 md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -102,7 +102,7 @@ function Nav() {
         </button>
       </div>
       {open && (
-        <div className={`mx-auto mt-2 max-w-5xl rounded-2xl border border-white/10 bg-[#0b0b18]/95 p-4 backdrop-blur-xl md:hidden`}>
+        <div className={`mx-auto mt-2 max-w-5xl rounded-2xl border border-white/10 bg-[#0b0b18]/95 p-4 backdrop-blur-md md:hidden`}>
           <ul className="flex flex-col gap-3">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
@@ -158,13 +158,17 @@ function Hero() {
           className="relative mx-auto"
         >
           <div className={`absolute -inset-3 rounded-[2rem] opacity-60 blur-2xl ${GRAD}`} />
-          <div className="relative rounded-[2rem] border border-white/15 bg-white/[0.06] p-2 backdrop-blur-xl">
+          <div className="relative rounded-[2rem] border border-white/15 bg-white/[0.06] p-2 backdrop-blur-md">
             <img
               src={PROFILE.photo}
               alt={PROFILE.name}
+              width={1024}
+              height={1024}
+              loading="eager"
+              fetchPriority="high"
               className="h-64 w-64 rounded-[1.6rem] object-cover sm:h-80 sm:w-80"
             />
-            <div className="absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#0b0b18]/90 px-4 py-2 backdrop-blur-xl">
+            <div className="absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#0b0b18]/90 px-4 py-2 backdrop-blur-md">
               <span className={`h-2 w-2 rounded-full ${GRAD}`} />
               <span className="text-[12px] font-medium text-white/80">{PROFILE.location}</span>
             </div>
@@ -222,7 +226,7 @@ function AtlasCase() {
           barClassName="border-b border-white/10 text-white/40"
           urlClassName="bg-white/5 text-white/40"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
         </BrowserFrame>
       </motion.div>
 
@@ -429,7 +433,7 @@ function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 pb-32 pt-12">
-      <motion.div {...fadeUp} className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-12 text-center backdrop-blur-xl">
+      <motion.div {...fadeUp} className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-12 text-center backdrop-blur-md">
         <div className={`absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full opacity-40 blur-3xl ${GRAD}`} />
         <div className="relative">
           <Eyebrow>Contact</Eyebrow>
@@ -486,9 +490,10 @@ export function AuroraDesign() {
       </footer>
 
       <style>{`
-        @keyframes auroraFloat1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
-        @keyframes auroraFloat2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px,40px) scale(1.05); } }
-        @keyframes auroraFloat3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-40px) scale(1.1); } }
+        /* translate-only (no scale) so the blurred layers never re-rasterize — pure GPU compositing */
+        @keyframes auroraFloat1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,30px); } }
+        @keyframes auroraFloat2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-50px,40px); } }
+        @keyframes auroraFloat3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px,-40px); } }
         .aurora-blob   { animation: auroraFloat1 18s ease-in-out infinite; }
         .aurora-blob-2 { animation: auroraFloat2 22s ease-in-out infinite; }
         .aurora-blob-3 { animation: auroraFloat3 26s ease-in-out infinite; }
