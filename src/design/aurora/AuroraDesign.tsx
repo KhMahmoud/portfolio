@@ -161,6 +161,8 @@ function Hero() {
           <div className="relative rounded-[2rem] border border-white/15 bg-white/[0.06] p-2 backdrop-blur-md">
             <img
               src={PROFILE.photo}
+              srcSet="/Mahmoud-400.webp 400w, /Mahmoud-800.webp 800w"
+              sizes="(max-width: 768px) 100vw, 50vw"
               alt={PROFILE.name}
               width={1024}
               height={1024}
@@ -168,7 +170,10 @@ function Hero() {
               fetchPriority="high"
               className="h-64 w-64 rounded-[1.6rem] object-cover sm:h-80 sm:w-80"
             />
-            <div className="absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#0b0b18]/90 px-4 py-2 backdrop-blur-md">
+          </div>
+          {/* Location badge — below the image so it never overlaps the photo */}
+          <div className="relative mt-2 flex justify-center">
+            <div className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#0b0b18]/90 px-4 py-2 backdrop-blur-md">
               <span className={`h-2 w-2 rounded-full ${GRAD}`} />
               <span className="text-[12px] font-medium text-white/80">{PROFILE.location}</span>
             </div>
@@ -182,7 +187,7 @@ function Hero() {
 /* ───────────────────────── Metrics ───────────────────────── */
 function Metrics() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-8">
+    <section className="mx-auto mt-10 max-w-6xl px-6 pb-8 md:mt-0">
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {METRICS.map((m, i) => (
           <motion.div
@@ -226,7 +231,7 @@ function AtlasCase() {
           barClassName="border-b border-white/10 text-white/40"
           urlClassName="bg-white/5 text-white/40"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
         </BrowserFrame>
       </motion.div>
 
@@ -282,7 +287,7 @@ function AtlasCase() {
               <img
                 src={m.image}
                 alt={`Atlas ERP — ${m.title}`}
-                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#06060f]/80 via-transparent to-transparent" />

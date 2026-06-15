@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export type DesignId = 'terminal' | 'aurora' | 'editorial';
@@ -80,9 +80,16 @@ export function DesignProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Persist choice and reflect it on <html> so global chrome can react.
+  const isFirstRender = useRef(true);
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, design);
     document.documentElement.dataset.design = design;
+    // Jump to the top when switching designs (but not on initial load).
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [design]);
 
   const meta = useMemo(

@@ -180,6 +180,8 @@ function Hero() {
               <div className="absolute inset-0 scale-125 rounded-full border border-brand-blue/10" />
               <img
                 src={PROFILE.photo}
+                srcSet="/Mahmoud-400.webp 400w, /Mahmoud-800.webp 800w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt={PROFILE.name}
                 width={1024}
                 height={1024}
@@ -263,7 +265,7 @@ function AtlasCase() {
           barClassName="border-b border-brand-cyan/10 bg-navy text-slate-subtle"
           urlClassName="bg-navy/60 text-slate-muted"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
         </BrowserFrame>
       </motion.div>
 
@@ -322,7 +324,7 @@ function AtlasCase() {
                 <img
                   src={m.image}
                   alt={`Atlas ERP — ${m.title}`}
-                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                 />
                 <span className="absolute right-2 top-2 rounded bg-navy/80 px-1.5 py-0.5 font-mono text-[10px] text-brand-cyan backdrop-blur">

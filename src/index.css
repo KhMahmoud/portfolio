@@ -37,6 +37,44 @@
     outline-offset: 2px;
   }
 
+  /* On mobile, the floating controls sit in-flow at the end of the page
+     instead of overlapping content; from md up they become fixed corner
+     buttons. */
+  .design-switcher,
+  .back-to-top {
+    position: static;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .design-switcher {
+    margin-top: 2rem;
+  }
+
+  .back-to-top {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .design-switcher,
+    .back-to-top {
+      position: fixed;
+      margin: 0;
+    }
+
+    .design-switcher {
+      bottom: 1rem;
+      right: 1rem;
+      align-items: flex-end;
+    }
+
+    .back-to-top {
+      bottom: 1rem;
+      left: 1rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;

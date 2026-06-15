@@ -1,5 +1,6 @@
 import { DesignProvider, useDesign } from './design/DesignContext';
 import { DesignSwitcher } from './components/DesignSwitcher';
+import { BackToTop } from './components/BackToTop';
 import { TerminalDesign } from './design/terminal/TerminalDesign';
 import { AuroraDesign } from './design/aurora/AuroraDesign';
 import { EditorialDesign } from './design/editorial/EditorialDesign';
@@ -25,6 +26,7 @@ export default function App() {
     <DesignProvider>
       <ActiveDesign />
       <DesignSwitcher />
+      <BackToTop />
     </DesignProvider>
   );
 }

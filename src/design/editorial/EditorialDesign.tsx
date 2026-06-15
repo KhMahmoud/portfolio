@@ -78,7 +78,7 @@ function Nav() {
             </li>
           ))}
         </ul>
-        <a href={PROFILE.cv} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 rounded-full bg-stone-900 px-4 py-2 text-[12px] font-medium text-stone-50 transition-colors hover:bg-blue-700 md:inline-flex">
+        <a href={PROFILE.cv} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 rounded-full border border-stone-900 bg-transparent px-4 py-2 text-[12px] font-medium text-stone-900 transition-all duration-200 ease-[ease] hover:bg-stone-900 hover:text-stone-50 md:inline-flex">
           CV <ExternalIcon width={13} height={13} />
         </a>
         <button className="text-stone-700 md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -126,18 +126,20 @@ function Hero() {
           <p className="mt-6 max-w-[520px] text-[0.98rem] leading-[1.8] text-stone-600 sm:text-[1.05rem] sm:leading-[1.85]">{PROFILE.summary}</p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <button onClick={() => scrollTo('#work')} className="inline-flex items-center gap-2 rounded-full bg-stone-900 px-5 py-3 text-[13px] font-medium text-stone-50 transition-colors hover:bg-blue-700 sm:px-6 sm:text-[14px]">
+            <button onClick={() => scrollTo('#work')} className="inline-flex items-center gap-2 rounded-full border border-stone-900 bg-transparent px-5 py-3 text-[13px] font-medium text-stone-900 transition-all duration-200 ease-[ease] hover:bg-stone-900 hover:text-stone-50 sm:px-6 sm:text-[14px]">
               View Atlas case study <ArrowRightIcon width={15} height={15} />
             </button>
-            <button onClick={() => scrollTo('#contact')} className="rounded-full border border-stone-300 px-5 py-3 text-[13px] font-medium text-stone-800 transition-colors hover:border-stone-900 sm:px-6 sm:text-[14px]">
+            <button onClick={() => scrollTo('#contact')} className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-3 text-[13px] font-medium text-stone-800 transition-colors hover:border-stone-900 hover:bg-stone-900 hover:text-stone-50 sm:px-6 sm:text-[14px]">
               Get in touch
             </button>
           </div>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="relative order-1 mx-auto w-full max-w-[220px] md:order-2 md:max-w-none">
-          <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-blue-700/30" />
-          <img src={PROFILE.photo} alt={PROFILE.name} width={1024} height={1024} loading="eager" fetchPriority="high" className="relative aspect-[4/5] w-full rounded-2xl border border-stone-200 object-cover shadow-sm md:aspect-auto md:h-80 md:w-72" />
+          <div className="absolute -bottom-1.5 -right-1.5 h-full w-full rounded-2xl border border-blue-700/30" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-stone-200 shadow-sm md:aspect-auto md:h-full md:w-full">
+            <img src={PROFILE.photo} srcSet="/Mahmoud-400.webp 400w, /Mahmoud-800.webp 800w" sizes="(max-width: 768px) 100vw, 50vw" alt={PROFILE.name} width={1024} height={1024} loading="eager" fetchPriority="high" className="block h-full w-full object-cover object-top" />
+          </div>
         </motion.div>
       </div>
     </section>
@@ -184,7 +186,7 @@ function AtlasCase() {
           barClassName="border-b border-stone-200 bg-stone-100 text-stone-400"
           urlClassName="bg-white text-stone-400"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} loading="lazy" decoding="async" className="w-full" />
+          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
         </BrowserFrame>
         <figcaption className="mt-3 text-center font-mono text-[11px] tracking-wide text-stone-400">
           Fig. 1 — Executive dashboard · real-time KPIs, cash flow & departmental analytics
@@ -232,7 +234,7 @@ function AtlasCase() {
             >
               <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-lg">
                 <div className="aspect-[16/10] overflow-hidden border-b border-stone-100">
-                  <img src={m.image} alt={`Atlas ERP — ${m.title}`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
+                  <img src={m.image} alt={`Atlas ERP — ${m.title}`} decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
                 </div>
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-3">
@@ -357,7 +359,7 @@ function Contact() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {CONTACT_LINKS.map((link) => {
-              const cls = 'inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-3 text-[13px] font-medium text-stone-800 transition-colors hover:border-stone-900 hover:bg-stone-900 hover:text-stone-50';
+              const cls = 'inline-flex items-center gap-2 rounded-full border border-stone-900 bg-transparent px-5 py-3 text-[13px] font-medium text-stone-900 transition-all duration-200 ease-[ease] hover:bg-stone-900 hover:text-stone-50';
               if (link.icon === 'mail') {
                 return (
                   <button key={link.id} onClick={copy} className={cls}>
