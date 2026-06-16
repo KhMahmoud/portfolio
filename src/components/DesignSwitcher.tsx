@@ -21,15 +21,18 @@ export function DesignSwitcher() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
-  // Bug 2 — force the panel chrome with one inline style on Editorial (light);
-  // dark designs fall back to the Tailwind classes ({} = no override).
+  // Panel chrome swaps with the active design: crisp white + dark text on the
+  // light Editorial theme, dark navy + white text on Terminal/Aurora.
   const light = meta.light;
-  const panelStyle = light
-    ? { background: '#ffffff', color: '#1c1917', borderColor: '#e5e7eb' }
-    : {};
+  const panelChrome = light
+    ? 'border-stone-200 bg-white text-stone-900'
+    : 'border-white/10 bg-[#0b1120]/95 text-white';
+  const triggerChrome = light
+    ? 'border-stone-200 bg-white text-stone-900'
+    : 'border-white/15 bg-[#0b1120]/90 text-white';
 
-  // Row/ring tints can't ride on the panel's inherited color, so they stay
-  // theme-aware; text colour is inherited from the panel + dimmed via opacity.
+  // Row/ring tints can't ride on the panel's text colour, so they stay
+  // theme-aware; row text is inherited from the panel + dimmed via opacity.
   const activeBg = light ? 'bg-black/[0.06]' : 'bg-white/10';
   const hoverBg = light ? 'hover:bg-black/[0.04]' : 'hover:bg-white/5';
   const ring = light ? 'ring-black/10' : 'ring-white/15';
@@ -52,8 +55,7 @@ export function DesignSwitcher() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.96 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              style={panelStyle}
-              className="fixed bottom-20 left-4 right-4 z-[90] overflow-hidden rounded-2xl border border-white/10 bg-[#0b1120]/95 p-2 text-white shadow-2xl backdrop-blur-xl md:left-auto md:w-[268px]"
+              className={`fixed bottom-20 left-4 right-4 z-[90] overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-xl md:left-auto md:w-[268px] ${panelChrome}`}
             >
               <p className="px-3 pb-1.5 pt-2 font-mono text-[10px] uppercase tracking-[0.16em] opacity-50">
                 Choose a design
@@ -63,7 +65,9 @@ export function DesignSwitcher() {
                 return (
                   <button
                     key={d.id}
-                    // Bug 3 (kept) — pick the design, then auto-close.
+                    // Apply the design, then always close the panel — the
+                    // switcher is mounted once (not remounted on switch), so
+                    // `open` would otherwise persist across rapid changes.
                     onClick={() => {
                       setDesign(d.id);
                       setOpen(false);
@@ -104,9 +108,9 @@ export function DesignSwitcher() {
         onClick={() => setOpen((v) => !v)}
         aria-label="Switch portfolio design"
         aria-expanded={open}
-        className="group flex items-center gap-2 rounded-full border border-white/15 bg-[#0b1120]/90 px-4 py-3 text-white shadow-2xl backdrop-blur-xl transition-transform hover:-translate-y-0.5"
+        className={`group flex items-center gap-2 rounded-full border px-4 py-3 shadow-2xl backdrop-blur-xl transition-transform hover:-translate-y-0.5 ${triggerChrome}`}
       >
-        <PaletteIcon width={17} height={17} className="text-white/80" />
+        <PaletteIcon width={17} height={17} className={light ? 'text-stone-500' : 'text-white/80'} />
         <span className="text-[12px] font-semibold tracking-wide">Design</span>
         <span className="flex gap-1">
           {DESIGNS.map((d) => (
