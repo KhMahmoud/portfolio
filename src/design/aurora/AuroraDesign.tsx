@@ -11,7 +11,6 @@ import {
   EXPERIENCE,
   SKILL_GROUPS,
   EDUCATION,
-  PROJECTS,
   CONTACT_LINKS,
 } from '../../data';
 import { useTypewriter } from '../../hooks/useTypewriter';
@@ -371,7 +370,7 @@ function Skills() {
         <Eyebrow>Skills</Eyebrow>
         <h2 className="mt-3 font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold tracking-[-0.02em] text-white">Technical toolkit</h2>
       </motion.div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SKILL_GROUPS.map((g, i) => (
           <motion.div
             key={g.id}
@@ -396,10 +395,9 @@ function Skills() {
 
 /* ───────────────────────── Education + pipeline ───────────────────────── */
 function EducationAndMore() {
-  const planned = PROJECTS.filter((p) => p.status !== 'live');
   return (
     <section id="education" className="mx-auto max-w-6xl px-6 py-24">
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+      <div className="max-w-2xl">
         <div>
           <motion.div {...fadeUp} className="mb-8"><Eyebrow>Education</Eyebrow>
             <h2 className="mt-3 font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold tracking-[-0.02em] text-white">Academic background</h2>
@@ -412,25 +410,6 @@ function EducationAndMore() {
                   <h3 className="font-display text-[1.05rem] font-semibold text-white">{e.degree}</h3>
                   <p className="text-[13px] text-white/55">{e.school}</p>
                   <p className={`mt-0.5 bg-clip-text font-mono text-[11px] text-transparent ${GRAD}`}>{e.period}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <motion.div {...fadeUp} className="mb-8"><Eyebrow>Next up</Eyebrow>
-            <h2 className="mt-3 font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold tracking-[-0.02em] text-white">In the pipeline</h2>
-          </motion.div>
-          <div className="space-y-4">
-            {planned.map((p, i) => (
-              <motion.div key={p.id} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: EASE, delay: i * 0.08 }} className="rounded-3xl border border-dashed border-white/15 bg-white/[0.02] p-6">
-                <div className="mb-1 flex items-center justify-between gap-2">
-                  <h3 className="font-display text-[1.05rem] font-semibold text-white">{p.name}</h3>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-[10px] text-white/50">Planned</span>
-                </div>
-                <p className="mb-3 text-[13px] leading-[1.7] text-white/55">{p.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => <span key={s} className="rounded-full bg-white/[0.06] px-2.5 py-0.5 text-[10px] text-white/55">{s}</span>)}
                 </div>
               </motion.div>
             ))}

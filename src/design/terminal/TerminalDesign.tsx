@@ -10,7 +10,6 @@ import {
   EXPERIENCE,
   SKILL_GROUPS,
   EDUCATION,
-  PROJECTS,
   CONTACT_LINKS,
   atlasSrcSet,
 } from '../../data';
@@ -405,7 +404,7 @@ function Skills() {
         <Label>Skills</Label>
         <h2 className="mb-12 font-display text-[clamp(1.6rem,3vw,2.2rem)] font-semibold tracking-[-0.02em]">Technical toolkit</h2>
       </motion.div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SKILL_GROUPS.map((g, i) => (
           <motion.div
             key={g.id}
@@ -433,10 +432,9 @@ function Skills() {
 
 /* ───────────────────────── Education + side projects ───────────────────────── */
 function EducationAndMore() {
-  const planned = PROJECTS.filter((p) => p.status !== 'live');
   return (
     <section id="education" className="mx-auto max-w-6xl px-6 py-24">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="max-w-2xl">
         <div>
           <motion.div {...fadeUp}>
             <Label>Education</Label>
@@ -457,36 +455,6 @@ function EducationAndMore() {
                   <h3 className="font-display text-[1rem] font-semibold">{e.degree}</h3>
                   <p className="text-[13px] text-slate-text">{e.school}</p>
                   <p className="mt-0.5 font-mono text-[11px] text-brand-cyan">{e.period}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <motion.div {...fadeUp}>
-            <Label>Next up</Label>
-            <h2 className="mb-8 font-display text-[clamp(1.4rem,2.5vw,1.9rem)] font-semibold tracking-[-0.02em]">In the pipeline</h2>
-          </motion.div>
-          <div className="space-y-4">
-            {planned.map((p, i) => (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: EASE, delay: i * 0.08 }}
-                className="rounded-xl border border-dashed border-slate-subtle/40 bg-navy-light/60 p-5"
-              >
-                <div className="mb-1 flex items-center justify-between gap-2">
-                  <h3 className="font-display text-[1rem] font-semibold">{p.name}</h3>
-                  <span className="rounded border border-slate-subtle/30 bg-slate-subtle/20 px-2 py-0.5 font-mono text-[10px] text-slate-text">Planned</span>
-                </div>
-                <p className="mb-3 text-[13px] leading-[1.7] text-slate-text">{p.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span key={s} className="rounded bg-brand-blue/10 px-2 py-0.5 font-mono text-[10px] text-brand-cyan/80">{s}</span>
-                  ))}
                 </div>
               </motion.div>
             ))}

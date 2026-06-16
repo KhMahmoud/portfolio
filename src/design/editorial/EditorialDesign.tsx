@@ -11,7 +11,6 @@ import {
   EXPERIENCE,
   SKILL_GROUPS,
   EDUCATION,
-  PROJECTS,
   CONTACT_LINKS,
 } from '../../data';
 import { useTypewriter } from '../../hooks/useTypewriter';
@@ -294,13 +293,12 @@ function Experience() {
 
 /* ───────────────────────── Skills + Education ───────────────────────── */
 function SkillsAndEducation() {
-  const planned = PROJECTS.filter((p) => p.status !== 'live');
   return (
     <section id="skills" className="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <motion.div {...fadeUp}>
         <SectionMark n="04">Capabilities</SectionMark>
       </motion.div>
-      <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {SKILL_GROUPS.map((g, i) => (
           <motion.div key={g.id} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, ease: EASE, delay: i * 0.06 }} className="border-t border-stone-200 pt-5">
             <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-700">{g.category}</p>
@@ -312,7 +310,7 @@ function SkillsAndEducation() {
       </div>
 
       <motion.div {...fadeUp} id="education" className="mt-24 scroll-mt-24">
-        <SectionMark n="05">Education &amp; Next</SectionMark>
+        <SectionMark n="05">Education</SectionMark>
       </motion.div>
       <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
         {EDUCATION.map((e, i) => (
@@ -323,15 +321,6 @@ function SkillsAndEducation() {
               <p className="text-[14px] text-stone-600">{e.school}</p>
               <p className="mt-0.5 font-mono text-[12px] text-stone-400">{e.period}</p>
             </div>
-          </motion.div>
-        ))}
-        {planned.map((p, i) => (
-          <motion.div key={p.id} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, ease: EASE, delay: i * 0.06 }} className="border-t border-dashed border-stone-300 pt-5">
-            <div className="flex items-center justify-between gap-2">
-              <h3 className={`${SERIF} text-[1.2rem] font-semibold ${INK}`}>{p.name}</h3>
-              <span className="rounded-full border border-stone-300 px-2.5 py-0.5 text-[10px] text-stone-400">Planned</span>
-            </div>
-            <p className="mt-2 text-[14px] leading-[1.7] text-stone-600">{p.description}</p>
           </motion.div>
         ))}
       </div>

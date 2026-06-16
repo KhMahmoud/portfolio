@@ -260,13 +260,8 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: 'frontend',
-    category: 'Frontend',
-    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Responsive UI', 'RTL / i18n'],
-  },
-  {
-    id: 'geospatial',
-    category: 'Geospatial',
-    skills: ['GPS / GNSS', 'Total Station', 'ArcGIS / ArcMap', 'AutoCAD', 'QGIS'],
+    category: 'Client-Side Basics',
+    skills: ['React', 'TypeScript', 'Tailwind CSS'],
   },
   {
     id: 'tools',
@@ -286,22 +281,6 @@ export const PROJECTS: Project[] = [
     githubUrl: 'https://github.com/osaid-B/Main-Application',
     liveUrl: '#',
     status: 'live',
-  },
-  {
-    id: 'geo-viewer',
-    name: 'GIS Web Dashboard',
-    description:
-      'A browser-based dashboard visualizing land-survey data on interactive maps — combining my surveying background with web development.',
-    stack: ['React', 'TypeScript', 'ArcGIS', 'REST API'],
-    status: 'planned',
-  },
-  {
-    id: 'survey-tool',
-    name: 'Survey Data Manager',
-    description:
-      'A web app to manage, organize, and export field survey records, built on skills from both Atlas ERP and land surveying.',
-    stack: ['React', 'TypeScript', 'AutoCAD Data', 'SQL'],
-    status: 'planned',
   },
 ];
 
