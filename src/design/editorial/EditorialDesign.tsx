@@ -223,13 +223,13 @@ function AtlasCase() {
         </p>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
           {ATLAS_MODULES.map((m, i) => (
-            <motion.button
+            // No per-card whileInView reveal: its IntersectionObserver could
+            // fail to fire on some mobile browsers (e.g. Galaxy A52), leaving
+            // every card stuck at opacity:0 — i.e. the screenshots rendered
+            // blank. Cards are now always visible; hover stays CSS.
+            <button
               key={m.id}
               onClick={() => open(i)}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, ease: EASE, delay: (i % 2) * 0.06 }}
               className="group text-left"
             >
               <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-lg">
@@ -245,7 +245,7 @@ function AtlasCase() {
               <div className="mt-3 flex flex-wrap gap-2">
                 {m.tags.map((t) => <span key={t} className="rounded-full bg-stone-100 px-2.5 py-0.5 text-[11px] text-stone-500">{t}</span>)}
               </div>
-            </motion.button>
+            </button>
           ))}
         </div>
       </motion.div>

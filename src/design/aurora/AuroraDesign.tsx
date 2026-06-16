@@ -274,13 +274,12 @@ function AtlasCase() {
       </motion.div>
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ATLAS_MODULES.map((m, i) => (
-          <motion.button
+          // No per-card whileInView reveal: its IntersectionObserver could fail
+          // to fire on some mobile browsers, leaving cards at opacity:0 (blank
+          // screenshots). Always-visible; hover stays CSS.
+          <button
             key={m.id}
             onClick={() => open(i)}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE, delay: (i % 3) * 0.05 }}
             className={`group ${GLASS} overflow-hidden text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/25 ${span(i)}`}
           >
             <div className="relative aspect-[16/10] overflow-hidden">
@@ -304,7 +303,7 @@ function AtlasCase() {
                 ))}
               </div>
             </div>
-          </motion.button>
+          </button>
         ))}
       </div>
 
