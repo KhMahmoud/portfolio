@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DESIGNS, useDesign } from '../design/DesignContext';
 import { PaletteIcon } from './icons';
@@ -9,27 +9,16 @@ import { PaletteIcon } from './icons';
  * Choice persists to localStorage.
  */
 export function DesignSwitcher() {
-  const { design, meta, setDesign } = useDesign();
-  const [open, setOpen] = useState(false);
+  const { design, meta, setDesign, panelOpen, setPanelOpen } = useDesign();
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close on Escape (outside-click on desktop also handled by the overlay).
+  // Close on Escape (outside-click handled by the overlay).
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    if (!panelOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setPanelOpen(false);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
-
-  // Force the panel shut after the active design actually changes. This survives
-  // the Suspense re-reveal race: DesignSwitcher lives inside App's Suspense
-  // boundary, so switching to a not-yet-loaded design chunk makes React discard
-  // the render that ran setOpen(false) and restore the panel's prior open state.
-  // Running it here, post-commit, guarantees the close sticks once the new
-  // design is live.
-  useEffect(() => {
-    setOpen(false);
-  }, [design]);
+  }, [panelOpen, setPanelOpen]);
 
   // Panel chrome swaps with the active design: crisp white + dark text on the
   // light Editorial theme, dark navy + white text on Terminal/Aurora.
@@ -50,12 +39,12 @@ export function DesignSwitcher() {
   return (
     <div ref={ref} className="design-switcher z-[90] flex flex-col gap-3">
       <AnimatePresence>
-        {open && (
+        {panelOpen && (
           <>
             {/* Transparent tap-to-dismiss overlay behind the panel. */}
             <div
               className="fixed inset-0 z-[89]"
-              onClick={() => setOpen(false)}
+              onClick={() => setPanelOpen(false)}
               aria-hidden="true"
             />
             {/* Bug 1 — the panel is position: fixed on EVERY screen size, so it
@@ -75,13 +64,7 @@ export function DesignSwitcher() {
                 return (
                   <button
                     key={d.id}
-                    // Apply the design, then always close the panel — the
-                    // switcher is mounted once (not remounted on switch), so
-                    // `open` would otherwise persist across rapid changes.
-                    onClick={() => {
-                      setDesign(d.id);
-                      setOpen(false);
-                    }}
+                    onClick={() => { setPanelOpen(false); setDesign(d.id); }}
                     className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors ${
                       active ? activeBg : hoverBg
                     }`}
@@ -115,9 +98,9 @@ export function DesignSwitcher() {
       </AnimatePresence>
 
       <button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setPanelOpen(!panelOpen)}
         aria-label="Switch portfolio design"
-        aria-expanded={open}
+        aria-expanded={panelOpen}
         className={`group flex items-center gap-2 rounded-full border px-4 py-3 shadow-2xl backdrop-blur-xl transition-transform hover:-translate-y-0.5 ${triggerChrome}`}
       >
         <PaletteIcon width={17} height={17} className={light ? 'text-stone-500' : 'text-white/80'} />

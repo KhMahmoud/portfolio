@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, startTransition, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export type DesignId = 'terminal' | 'aurora' | 'editorial';
@@ -61,16 +61,33 @@ interface DesignContextValue {
   meta: DesignMeta;
   setDesign: (id: DesignId) => void;
   cycleDesign: () => void;
+  /** False whenever a design switch is in flight, regardless of raw open state. */
+  panelOpen: boolean;
+  setPanelOpen: (open: boolean) => void;
 }
 
 const DesignContext = createContext<DesignContextValue | null>(null);
 
 export function DesignProvider({ children }: { children: ReactNode }) {
   const [design, setDesignState] = useState<DesignId>(readInitial);
+  const [rawPanelOpen, setPanelOpen] = useState(false);
+  // switchInProgress is set urgently on click and cleared only after the new
+  // design commits. It acts as a second independent latch so that even if
+  // rawPanelOpen reads stale during a Suspense re-reveal, the panel stays shut.
+  const [switchInProgress, setSwitchInProgress] = useState(false);
 
   const setDesign = useCallback((id: DesignId) => {
-    setDesignState(id);
+    setSwitchInProgress(true);
+    setPanelOpen(false);
+    startTransition(() => {
+      setDesignState(id);
+    });
   }, []);
+
+  // Release the latch once the new design is live.
+  useEffect(() => {
+    setSwitchInProgress(false);
+  }, [design]);
 
   const cycleDesign = useCallback(() => {
     setDesignState((current) => {
@@ -97,9 +114,12 @@ export function DesignProvider({ children }: { children: ReactNode }) {
     [design],
   );
 
+  // Panel is forced shut while a switch is in flight.
+  const panelOpen = rawPanelOpen && !switchInProgress;
+
   const value = useMemo(
-    () => ({ design, meta, setDesign, cycleDesign }),
-    [design, meta, setDesign, cycleDesign],
+    () => ({ design, meta, setDesign, cycleDesign, panelOpen, setPanelOpen }),
+    [design, meta, setDesign, cycleDesign, panelOpen],
   );
 
   return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>;
