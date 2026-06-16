@@ -133,10 +133,19 @@ function Hero() {
             <br />
             <span className={`bg-clip-text text-transparent ${GRAD}`}>{PROFILE.lastName}</span>
           </h1>
-          <p className="mt-4 min-h-[1.75rem] font-mono text-lg font-medium text-white/80">
-            {displayed}
-            <span className={`ml-0.5 text-violet-300 ${done ? 'opacity-0' : 'animate-cursor-blink'}`}>|</span>
-          </p>
+          <div className="relative mt-4 font-mono text-lg font-medium">
+            {/* Invisible sizer reserves the role's final wrapped height (1 or 2
+                lines depending on width) so the typewriter can't push content
+                down as it types/wraps — eliminates the hero's mobile CLS. */}
+            <span aria-hidden="true" className="invisible">
+              {PROFILE.roleLong}
+              <span className="ml-0.5">|</span>
+            </span>
+            <p className="absolute inset-0 text-white/80">
+              {displayed}
+              <span className={`ml-0.5 text-violet-300 ${done ? 'opacity-0' : 'animate-cursor-blink'}`}>|</span>
+            </p>
+          </div>
           <p className="mt-5 max-w-[540px] text-[1.02rem] leading-[1.8] text-white/55">{PROFILE.tagline}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
