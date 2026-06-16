@@ -12,6 +12,7 @@ import {
   EDUCATION,
   PROJECTS,
   CONTACT_LINKS,
+  atlasSrcSet,
 } from '../../data';
 import { useTypewriter } from '../../hooks/useTypewriter';
 import { useLightbox } from '../../hooks/useLightbox';
@@ -265,7 +266,7 @@ function AtlasCase() {
           barClassName="border-b border-brand-cyan/10 bg-navy text-slate-subtle"
           urlClassName="bg-navy/60 text-slate-muted"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
+          <img src={ATLAS.cover} srcSet={atlasSrcSet(ATLAS.cover)} sizes="(max-width: 768px) 100vw, 50vw" alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
         </BrowserFrame>
       </motion.div>
 
@@ -322,6 +323,8 @@ function AtlasCase() {
               <div className="relative aspect-[16/10] overflow-hidden border-b border-brand-cyan/10 bg-navy">
                 <img
                   src={m.image}
+                  srcSet={atlasSrcSet(m.image)}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   alt={`Atlas ERP — ${m.title}`}
                   decoding="async"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"

@@ -10,6 +10,16 @@ import type {
   CaseHighlight,
 } from '../types';
 
+/**
+ * Build a responsive srcSet for an Atlas screenshot. Each `/projects/atlas/x.webp`
+ * has pre-generated 800w/400w WebP variants (`x-800.webp`, `x-400.webp`) so the
+ * browser can download a right-sized image instead of the ~1730×1079 original.
+ */
+export function atlasSrcSet(src: string): string {
+  const base = src.replace(/\.webp$/, '');
+  return `${base}-800.webp 800w, ${base}-400.webp 400w`;
+}
+
 /* ─────────────────────────────────────────────────────────────
    Identity & elevator pitch — reused across all three designs.
    ───────────────────────────────────────────────────────────── */

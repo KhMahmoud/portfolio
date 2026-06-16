@@ -7,6 +7,7 @@ import {
   ATLAS,
   ATLAS_HIGHLIGHTS,
   ATLAS_MODULES,
+  atlasSrcSet,
   EXPERIENCE,
   SKILL_GROUPS,
   EDUCATION,
@@ -186,7 +187,7 @@ function AtlasCase() {
           barClassName="border-b border-stone-200 bg-stone-100 text-stone-400"
           urlClassName="bg-white text-stone-400"
         >
-          <img src={ATLAS.cover} alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
+          <img src={ATLAS.cover} srcSet={atlasSrcSet(ATLAS.cover)} sizes="(max-width: 768px) 100vw, 50vw" alt="Atlas ERP dashboard" width={1873} height={1080} decoding="async" className="w-full" />
         </BrowserFrame>
         <figcaption className="mt-3 text-center font-mono text-[11px] tracking-wide text-stone-400">
           Fig. 1 — Executive dashboard · real-time KPIs, cash flow & departmental analytics
@@ -234,7 +235,7 @@ function AtlasCase() {
             >
               <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-lg">
                 <div className="aspect-[16/10] overflow-hidden border-b border-stone-100">
-                  <img src={m.image} alt={`Atlas ERP — ${m.title}`} decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
+                  <img src={m.image} srcSet={atlasSrcSet(m.image)} sizes="(max-width: 768px) 100vw, 50vw" alt={`Atlas ERP — ${m.title}`} decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
                 </div>
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-3">
