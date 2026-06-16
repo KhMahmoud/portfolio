@@ -292,14 +292,17 @@ function AtlasCase() {
             onClick={() => open(i)}
             className={`group ${GLASS} overflow-hidden text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/25 ${span(i)}`}
           >
-            <div className="relative aspect-[16/10] overflow-hidden">
+            {/* padding-bottom 62.5% = a 16:10 box without relying on CSS
+                aspect-ratio (which some mobile browsers fail to resolve,
+                collapsing the image to 0 height → blank). */}
+            <div className="relative overflow-hidden pb-[62.5%]">
               <img
                 src={m.image}
                 srcSet={atlasSrcSet(m.image)}
                 sizes="(max-width: 768px) 100vw, 50vw"
                 alt={`Atlas ERP — ${m.title}`}
                 decoding="async"
-                className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
+                className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#06060f]/80 via-transparent to-transparent" />
               <span className="absolute right-3 top-3 rounded-full border border-white/15 bg-black/40 px-2 py-0.5 font-mono text-[10px] text-white/80 backdrop-blur">

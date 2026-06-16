@@ -234,8 +234,11 @@ function AtlasCase() {
               className="group text-left"
             >
               <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-lg">
-                <div className="aspect-[16/10] overflow-hidden border-b border-stone-100">
-                  <img src={m.image} srcSet={atlasSrcSet(m.image)} sizes="(max-width: 768px) 100vw, 50vw" alt={`Atlas ERP — ${m.title}`} decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
+                {/* padding-bottom 62.5% = a 16:10 box without relying on CSS
+                    aspect-ratio (which some mobile browsers fail to resolve,
+                    collapsing the image to 0 height → blank). */}
+                <div className="relative overflow-hidden border-b border-stone-100 pb-[62.5%]">
+                  <img src={m.image} srcSet={atlasSrcSet(m.image)} sizes="(max-width: 768px) 100vw, 50vw" alt={`Atlas ERP — ${m.title}`} decoding="async" className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
                 </div>
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-3">
