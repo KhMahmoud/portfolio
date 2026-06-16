@@ -21,6 +21,16 @@ export function DesignSwitcher() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
+  // Force the panel shut after the active design actually changes. This survives
+  // the Suspense re-reveal race: DesignSwitcher lives inside App's Suspense
+  // boundary, so switching to a not-yet-loaded design chunk makes React discard
+  // the render that ran setOpen(false) and restore the panel's prior open state.
+  // Running it here, post-commit, guarantees the close sticks once the new
+  // design is live.
+  useEffect(() => {
+    setOpen(false);
+  }, [design]);
+
   // Panel chrome swaps with the active design: crisp white + dark text on the
   // light Editorial theme, dark navy + white text on Terminal/Aurora.
   const light = meta.light;
