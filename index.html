@@ -44,8 +44,18 @@
     />
     <meta name="twitter:image" content="https://mahmoudkharouf.dev/projects/atlas/dashboard.webp" />
 
-    <!-- Preload the LCP image (hero headshot) -->
-    <link rel="preload" as="image" href="/Mahmoud.webp" fetchpriority="high" />
+    <!-- Preload the LCP image (hero headshot). Uses imagesrcset/imagesizes so
+         the preload scanner fetches the SAME responsive variant the <img>
+         picks (400w mobile / 800w desktop) at parse time — before the lazy
+         design chunk loads. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/Mahmoud-800.webp"
+      imagesrcset="/Mahmoud-400.webp 400w, /Mahmoud-800.webp 800w"
+      imagesizes="(max-width: 768px) 100vw, 50vw"
+      fetchpriority="high"
+    />
 
     <!-- Fonts — loaded async so they don't block first paint -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,14 +1,21 @@
+import { lazy, Suspense } from 'react';
 import { DesignProvider, useDesign } from './design/DesignContext';
 import { DesignSwitcher } from './components/DesignSwitcher';
 import { BackToTop } from './components/BackToTop';
-import { TerminalDesign } from './design/terminal/TerminalDesign';
-import { AuroraDesign } from './design/aurora/AuroraDesign';
-import { EditorialDesign } from './design/editorial/EditorialDesign';
 
-// All three designs ship in the main bundle (eager). Code-splitting the
-// non-default variants was net-negative: switching to one meant an extra
-// chunk round-trip behind a blank screen, which tanked FCP/LCP for Aurora
-// and Editorial. Since every design needs to score well, eager wins.
+// Each design is code-split so only the active variant's chunk loads. The
+// shared chrome (DesignSwitcher, BackToTop) and all utilities stay in the
+// main bundle. Named exports are mapped to `default` for React.lazy.
+const TerminalDesign = lazy(() =>
+  import('./design/terminal/TerminalDesign').then((m) => ({ default: m.TerminalDesign })),
+);
+const AuroraDesign = lazy(() =>
+  import('./design/aurora/AuroraDesign').then((m) => ({ default: m.AuroraDesign })),
+);
+const EditorialDesign = lazy(() =>
+  import('./design/editorial/EditorialDesign').then((m) => ({ default: m.EditorialDesign })),
+);
+
 function ActiveDesign() {
   const { design } = useDesign();
   switch (design) {
@@ -24,9 +31,16 @@ function ActiveDesign() {
 export default function App() {
   return (
     <DesignProvider>
-      <ActiveDesign />
-      <DesignSwitcher />
-      <BackToTop />
+      {/* DesignSwitcher/BackToTop live inside the boundary so they don't paint
+          into an empty page and get shoved down when the lazy design chunk
+          lands (which spikes CLS to ~1). They stay statically imported in the
+          main bundle — Suspense just defers their first render until the
+          active design has mounted, so everything paints in one frame. */}
+      <Suspense fallback={null}>
+        <ActiveDesign />
+        <DesignSwitcher />
+        <BackToTop />
+      </Suspense>
     </DesignProvider>
   );
 }
