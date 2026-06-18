@@ -1,6 +1,6 @@
 # Mahmoud Kharouf — Developer Portfolio
 
-Live: [portfolio-kharoufmahmoud.vercel.app](https://portfolio-kharoufmahmoud.vercel.app)
+Live: [portfolio-kharoufmahmoud.vercel.app](https://khmahmoud.com/)
 Stack: React 19 · TypeScript · Vite · Tailwind CSS · Framer Motion
 
 A production-grade portfolio built around Atlas ERP — a multi-tenant 
