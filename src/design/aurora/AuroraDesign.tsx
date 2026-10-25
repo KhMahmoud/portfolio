@@ -278,7 +278,7 @@ function AtlasCase() {
       <motion.div {...fadeUp} className="mt-16 text-center">
         <Eyebrow>Explore the modules</Eyebrow>
         <p className="mx-auto mt-3 max-w-2xl text-[14px] leading-[1.7] text-white/50">
-          Ten integrated modules on one multi-tenant core. Tap any screen to enlarge.
+          Ten demo screens across five backend modules, on one multi-tenant core. Tap any screen to enlarge.
         </p>
       </motion.div>
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

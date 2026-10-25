@@ -54,7 +54,7 @@ export const NAV_ITEMS: NavItem[] = [
    Impact metrics — the "catch the eye in 5 seconds" strip.
    ───────────────────────────────────────────────────────────── */
 export const METRICS: Metric[] = [
-  { id: 'modules', value: '10+', label: 'Integrated ERP modules shipped' },
+  { id: 'modules', value: '10', label: 'Demo screens across 5 backend modules' },
   { id: 'tenant', value: 'Multi-tenant', label: 'Isolated DB schema per company' },
   { id: 'stack', value: 'Django + DRF', label: 'REST APIs, data & multi-tenant systems' },
   { id: 'field', value: '3 yrs', label: 'Field surveying — precision & rigor' },
@@ -66,10 +66,10 @@ export const METRICS: Metric[] = [
    ───────────────────────────────────────────────────────────── */
 export const ATLAS = {
   name: 'Atlas ERP',
-  tagline: 'A production-ready, multi-tenant business management platform.',
+  tagline: 'A multi-tenant business management platform, live as a demo and being hardened for production.',
   description:
     "Atlas is a complete Enterprise Resource Planning system I architected and built end-to-end as my CS graduation project. Each company's data is isolated per tenant behind a secure REST API, with role-based access control, a full Arabic (RTL) interface, and dark mode. It unifies finance, accounting, HR, inventory, and point-of-sale into one platform. Built on SQLite, with a planned migration to PostgreSQL for production scale.",
-  githubUrl: 'https://github.com/osaid-B/Main-Application',
+  githubUrl: 'https://github.com/KhMahmoud/atlas-backend',
   liveUrl: '#',
   cover: '/projects/atlas/dashboard.webp',
   stack: [
@@ -212,7 +212,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     role: 'Backend Developer — Lead',
     org: 'Atlas ERP · Graduation Project',
     description:
-      'Architected and built a complete, multi-tenant ERP from design to deployment. Owned the backend API and database schemas, drove frontend development, and coordinated a distributed team using agile practices to ship 10+ integrated business modules.',
+      'Architected and built a complete, multi-tenant ERP from design to deployment. Owned the backend API and database schemas, drove frontend development, and coordinated a distributed team using agile practices to ship 5 backend modules behind a 10-screen Arabic demo UI.',
     tags: ['Django REST', 'SQLite', 'React', 'Multi-Tenant', 'Team Lead'],
   },
   {
@@ -275,12 +275,12 @@ export const PROJECTS: Project[] = [
     id: 'atlas-erp',
     name: 'Atlas ERP',
     description:
-      'A production-ready, multi-tenant ERP with isolated tenant schemas, granular RBAC, a secure REST API, and 10+ integrated business modules.',
+      'A multi-tenant ERP (live demo, hardening in progress) with isolated tenant schemas, granular RBAC, and a secure REST API across 5 backend modules, surfaced through a 10-screen Arabic demo UI.',
     stack: ['Django', 'Django REST', 'SQLite', 'React', 'RBAC', 'Multi-Tenant'],
     image: '/projects/atlas/dashboard.webp',
-    githubUrl: 'https://github.com/osaid-B/Main-Application',
+    githubUrl: 'https://github.com/KhMahmoud/atlas-backend',
     liveUrl: '#',
-    status: 'live',
+    status: 'wip',
   },
 ];
 

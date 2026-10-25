@@ -251,7 +251,7 @@ function AtlasCase() {
         <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-[clamp(1.9rem,4vw,3rem)] font-bold tracking-[-0.02em]">{ATLAS.name}</h2>
           <span className="rounded border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 font-mono text-[11px] text-emerald-400">
-            ● Live · production-ready
+            ● Live demo · hardening in progress
           </span>
         </div>
         <p className="max-w-3xl font-body text-[1.05rem] leading-[1.85] text-slate-text">{ATLAS.description}</p>
@@ -307,7 +307,7 @@ function AtlasCase() {
       <motion.div {...fadeUp} className="mt-16">
         <Label>Explore the modules</Label>
         <p className="mb-8 max-w-2xl text-[14px] leading-[1.7] text-slate-text">
-          Ten integrated modules, all running on the same multi-tenant core. Click any screen to enlarge.
+          Ten demo screens across five backend modules, all running on the same multi-tenant core. Click any screen to enlarge.
         </p>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {ATLAS_MODULES.map((m, i) => (
