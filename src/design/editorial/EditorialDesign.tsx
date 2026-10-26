@@ -219,7 +219,7 @@ function AtlasCase() {
       <motion.div {...fadeUp} className="mt-20">
         <SectionMark n="02">The Modules</SectionMark>
         <p className="mb-10 max-w-2xl text-[15px] leading-[1.8] text-stone-600">
-          Ten demo screens across five backend modules — finance, accounting, HR, inventory, and point-of-sale — all running on one multi-tenant core. Select any screen to view it in full.
+          Ten demo screens — finance, accounting, HR, inventory, and point-of-sale — all running on one multi-tenant core. Select any screen to view it in full.
         </p>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
           {ATLAS_MODULES.map((m, i) => (

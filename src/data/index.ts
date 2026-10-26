@@ -68,7 +68,7 @@ export const ATLAS = {
   name: 'Atlas ERP',
   tagline: 'A multi-tenant business management platform, live as a demo and being hardened for production.',
   description:
-    "Atlas is a complete Enterprise Resource Planning system I architected and built end-to-end as my CS graduation project. Each company's data is isolated per tenant behind a secure REST API, with role-based access control, a full Arabic (RTL) interface, and dark mode. It unifies finance, accounting, HR, inventory, and point-of-sale into one platform. Built on SQLite, with a planned migration to PostgreSQL for production scale.",
+    "Atlas is a multi-tenant ERP I architected and built end-to-end as my CS graduation project — a Django REST backend with a 10-screen Arabic-first demo UI spanning finance, HR, inventory, and point-of-sale. Each company's data is isolated per tenant behind a secure REST API, with role-based access control, full Arabic (RTL), and dark mode. Built on SQLite as a working demo; PostgreSQL migration and security hardening are the documented roadmap.",
   githubUrl: 'https://github.com/KhMahmoud/atlas-backend',
   liveUrl: '#',
   cover: '/projects/atlas/dashboard.webp',
