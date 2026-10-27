@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { DesignProvider, useDesign } from './design/DesignContext';
 import { DesignSwitcher } from './components/DesignSwitcher';
 import { BackToTop } from './components/BackToTop';
@@ -41,6 +42,7 @@ export default function App() {
         <DesignSwitcher />
         <BackToTop />
       </Suspense>
+      <Analytics />
     </DesignProvider>
   );
 }
